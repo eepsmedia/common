@@ -21,6 +21,9 @@
  limitations under the License.
  ==========================================================================
  */
+//  import Swal from "../sweetalert2/dist/sweetalert2.all.min";
+//  import isTimerRunning from "module:sweetalert2.Swal.isTimerRunning";
+
 /**
  * Created by tim on 10/20/15.
  */
@@ -58,6 +61,35 @@ var     TEEUtils = {
 
     twoPlaces : function( x ) {
         return (Math.round( x * 100) / 100.0);
+    },
+
+    stringFractionDecimalOrPercentToNumber : function(iString) {
+        let out = {theNumber : 0, theString : '0'};
+        let theNumber = 0;
+        let theString = "";
+
+        const wherePercent = iString.indexOf("%");
+        const whereSlash = iString.indexOf("/");
+        if (wherePercent !== -1) {
+            theNumber = parseFloat(iString.substring(0, wherePercent - 1))/100.0;
+            theString = `${theNumber}%`;
+        } else if (whereSlash !== -1) {
+            const beforeSlash = iString.substring(0, whereSlash - 1);
+            const afterSlash = iString.substring(whereSlash + 1);
+            const theNumerator = parseFloat(beforeSlash);
+            const theDenominator = parseFloat(afterSlash);
+            theNumber = theNumerator / theDenominator;
+            theString = `${theNumerator}/${theDenominator}`;
+        } else {
+            const theNumber = parseFloat(iString);
+            theString = `${theNumber}`;
+        }
+
+        if (!isNaN(theNumber)) {
+            return {theNumber: theNumber, theString: theString};
+        } else {
+            return {theNumber: 0, theString: ""};
+        }
     },
 
     /**
