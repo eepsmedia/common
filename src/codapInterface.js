@@ -125,6 +125,10 @@
         return resourceSpec === '*' || resourceName === resourceSpec;
     }
 
+    function emptyNotifications() {
+        notificationSubscribers = [];
+    }
+
     function notificationHandler (request, callback) {
         var action = request.action;
         var resource = request.resource;
