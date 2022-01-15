@@ -38,7 +38,7 @@ const pluginLang = {
     /**
      * Get a two-letter language code from a variety of sources.
      *
-     * @param iDefaultLanguage  the default laguage in case none of the following work
+     * @param iDefaultLanguage  the default language in case none of the following work
      * @param iSupportedLanguages an array of two-letter codes for the languages the plugin supports
      * @returns {*}     resulting two-letter code
      */
